@@ -50,6 +50,28 @@ on any page that reads the session** - which, since the header is
 personalised, is every page. Set it on the Vercel project for all
 environments, including previews.
 
+### Known issue: preview comments block the deploy step
+
+As of 2026-09-03 a deployment **builds successfully and then fails while
+uploading outputs**, with:
+
+```
+Cannot patch preview comments when immutable static file upload is enabled.
+Upgrade to next@v16.3.0-canary.32 or newer to resolve this.
+```
+
+This is not something the repository can fix:
+
+- the version it asks for is already satisfied - the build runs Next 16.3.4,
+  and `16.3.4` is newer than `16.3.0-canary.32`;
+- it happens after `Build Completed`, in Vercel's own upload step, and names
+  Vercel's preview-comments feature, which no code here touches.
+
+The workaround is a project setting: **turn off preview comments / the Vercel
+Toolbar for this project**, or wait for the platform-side fix. If a deployment
+fails with only this line after a clean build, nothing in the codebase has
+regressed.
+
 ### What is not configured yet
 
 - **Persistence.** With no `DATABASE_URL`, each serverless instance keeps its
