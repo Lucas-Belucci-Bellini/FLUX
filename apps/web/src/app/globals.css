@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@import '@flux/ui/styles/tokens.css';
+
+/*
+ * Tailwind scans the app automatically, but the design system lives in another
+ * workspace package. Without this, every class used only inside @flux/ui would
+ * be dropped from the stylesheet.
+ */
+@source '../../../../packages/ui/src';
