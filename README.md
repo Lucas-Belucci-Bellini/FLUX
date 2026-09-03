@@ -117,6 +117,7 @@ reason recorded. See [ADR-0004](docs/architecture/decisions/ADR-0004-defer-infra
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) - workflow, conventions, definition of done
 - [`docs/architecture/content-graph.md`](docs/architecture/content-graph.md) - the central idea, in detail
 - [`docs/architecture/decisions/`](docs/architecture/decisions/) - the decisions, with their reasons
+- [`docs/deployment/`](docs/deployment/) - deploying the monorepo, and the environment it needs
 
 ---
 
