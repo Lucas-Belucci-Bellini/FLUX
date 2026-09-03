@@ -1,0 +1,13 @@
+{
+  "name": "@flux/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "FLUX kernel: content graph, identifiers, errors, events, pagination. Zero dependencies, zero framework, zero DOM.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}
