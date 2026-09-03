@@ -25,6 +25,7 @@ costs. Read these before proposing a change that contradicts one.
 | [0004](architecture/decisions/ADR-0004-defer-infrastructure.md) | infrastructure arrives with the phase that needs it |
 | [0005](architecture/decisions/ADR-0005-authorisation-is-server-side.md) | authorisation is server-side and denied by default |
 | [0006](architecture/decisions/ADR-0006-licence.md) | AGPL-3.0-only (proposed - worth confirming) |
+| [0007](architecture/decisions/ADR-0007-opaque-server-side-sessions.md) | opaque server-side sessions with peppered token hashes |
 
 ## Per-area documentation
 
@@ -32,8 +33,9 @@ Each area gets a document when it is built, not before:
 
 | Area | Document | Phase |
 | ---- | -------- | ----- |
-| Database | [`database/`](database/) | 1 |
-| API | [`api/`](api/) | 1 |
+| Identity | [`architecture/decisions/ADR-0005`](architecture/decisions/ADR-0005-authorisation-is-server-side.md), [`ADR-0007`](architecture/decisions/ADR-0007-opaque-server-side-sessions.md) | 1 ✅ |
+| API | [`api/`](api/) | 1 ✅ |
+| Database | [`database/`](database/) | 2 |
 | Video | `video/` | 2 |
 | Communities | `communities/` | 5 |
 | Moderation | `moderation/` | 6 |

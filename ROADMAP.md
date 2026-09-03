@@ -16,8 +16,8 @@ written; it is done because it was verified.
 | Phase | Name                          | Status       |
 | ----- | ----------------------------- | ------------ |
 | 0     | Foundation                    | **done**     |
-| 1     | Authentication and profiles   | **building** |
-| 2     | Video and creators            | planned      |
+| 1     | Authentication and profiles   | **done**     |
+| 2     | Video and creators            | **building** |
 | 3     | Feed, discovery and search    | planned      |
 | 4     | Comments and social graph     | planned      |
 | 5     | Communities                   | planned      |
@@ -51,19 +51,31 @@ The ground everything else stands on.
 production build succeeds, and all routes were rendered in a browser at three
 widths in both themes with no horizontal overflow and no console errors.
 
-## Phase 1 - Authentication and profiles
+## Phase 1 - Authentication and profiles ✅
 
 Accounts before anything that belongs to an account.
 
-- `User`, `Profile`, handles with reserved-name rules
-- credentials hashed with scrypt from `node:crypto` - no native dependency
-- sessions: signed, HTTP-only, rotating on privilege change
-- **RBAC**: platform roles plus per-community roles, resolved server-side,
-  deny-by-default
-- registration, sign-in, sign-out, profile editing
-- API-level tests for authorisation, not only for the happy path
+- `User` and `Profile`, split so that `publicProfile()` is the only way an
+  account reaches another person - the email cannot leak by omission
+- handles: folded for uniqueness, reserved-name list covering every route and
+  every impersonable name, plus a confusable fold so `@f1ux` is catchable
+- passwords: scrypt from `node:crypto` (no native dependency), self-describing
+  hashes so cost parameters can be raised without invalidating anyone
+- sessions: opaque and server-side so they are revocable; the cookie holds a
+  random token, the store holds an HMAC of it, so a database leak is not a pile
+  of usable sessions. Absolute lifetime and idle expiry, both enforced
+- **RBAC**: platform roles now, per-community roles modelled for phase 5,
+  deny-by-default, suspension overriding every grant
+- registration, sign-in, sign-out, public profiles, profile editing
+- `/api/auth/*` and `/api/users/*`, with one error envelope and one status map
 
-## Phase 2 - Video and creators
+**Verified:** 113 unit tests, plus 25 end-to-end checks in a real browser
+covering the authorisation paths - a signed-out request to `/api/users/me` is
+401, one account cannot rename another, sign-in answers identically for an
+unknown account and a wrong password, and the session cookie is HttpOnly and
+unreadable from JavaScript.
+
+## Phase 2 - Video and creators (building)
 
 - `Video`, `Short`, `Creator`; the upload contract and its states
 - visibility rules (public / unlisted / private) enforced on the server

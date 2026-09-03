@@ -51,7 +51,10 @@ export const PRIMARY_NAV: readonly NavGroup[] = [
   {
     id: 'platform',
     label: 'Platform',
-    items: [{ href: '/diagnostics', label: 'Diagnostics', icon: 'activity', ready: true, phase: 0 }],
+    items: [
+      { href: '/settings/profile', label: 'Your profile', icon: 'users', ready: true, phase: 1 },
+      { href: '/diagnostics', label: 'Diagnostics', icon: 'activity', ready: true, phase: 0 },
+    ],
   },
 ];
 

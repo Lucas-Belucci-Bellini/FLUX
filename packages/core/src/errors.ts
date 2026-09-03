@@ -33,7 +33,18 @@ const STATUS_BY_CODE: Record<ErrorCode, number> = {
 /** Extra machine-readable context. Must never carry secrets — it reaches clients. */
 export type ErrorDetails = Record<string, unknown>;
 
+/**
+ * Marks a FluxError in a way that survives module duplication.
+ *
+ * A bundler can end up with more than one copy of this module - one in the app
+ * layer, one inside a transpiled package - and then `instanceof` is false for
+ * an error thrown across that seam. That failure is silent and turns a clean
+ * 409 into a 500, so identity is a brand rather than a prototype check.
+ */
+const FLUX_ERROR_BRAND = '@flux/core:FluxError';
+
 export class FluxError extends Error {
+  readonly fluxError: typeof FLUX_ERROR_BRAND = FLUX_ERROR_BRAND;
   readonly code: ErrorCode;
   readonly details: ErrorDetails;
 
@@ -90,9 +101,26 @@ export class RateLimitedError extends FluxError {
   }
 }
 
+/**
+ * Recognise a FluxError, including one built by another copy of this module.
+ *
+ * Checks the brand and the code rather than the prototype, so an error crossing
+ * a bundle boundary keeps its status instead of being downgraded to a 500.
+ */
+export function isFluxError(value: unknown): value is FluxError {
+  if (value instanceof FluxError) return true;
+  if (typeof value !== 'object' || value === null) return false;
+  const candidate = value as { fluxError?: unknown; code?: unknown };
+  return (
+    candidate.fluxError === FLUX_ERROR_BRAND &&
+    typeof candidate.code === 'string' &&
+    (ERROR_CODES as readonly string[]).includes(candidate.code)
+  );
+}
+
 /** Narrow an unknown thrown value into a FluxError without losing information. */
 export function toFluxError(cause: unknown): FluxError {
-  if (cause instanceof FluxError) return cause;
+  if (isFluxError(cause)) return cause;
   if (cause instanceof Error) {
     return new FluxError('internal', cause.message, { name: cause.name });
   }

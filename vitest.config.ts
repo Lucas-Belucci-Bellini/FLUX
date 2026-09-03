@@ -14,6 +14,14 @@ export default defineConfig({
         },
       },
       {
+        test: {
+          name: 'identity',
+          root: './packages/identity',
+          environment: 'node',
+          include: ['src/**/*.test.ts'],
+        },
+      },
+      {
         plugins: [react()],
         test: {
           name: 'ui',
