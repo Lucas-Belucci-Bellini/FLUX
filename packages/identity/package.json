@@ -1,0 +1,17 @@
+{
+  "name": "@flux/identity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Accounts, sessions and authorisation. Server-side only: uses node:crypto.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@flux/core": "*",
+    "zod": "4.5.4"
+  }
+}

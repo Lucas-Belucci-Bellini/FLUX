@@ -14,7 +14,8 @@ That premise is not a slogan here - it is the data model. See
 
 ## Status
 
-**Phase 0 (foundation) is complete. Phase 1 (authentication and profiles) is next.**
+**Phases 0 (foundation) and 1 (authentication and profiles) are complete.
+Phase 2 (video and creators) is next.**
 
 The project is built in strict order, and a phase is never started while the one
 before it is broken. The full order is in [`ROADMAP.md`](ROADMAP.md); the app
@@ -68,6 +69,7 @@ FLUX
 │   └── web/            Next.js app: routes, pages, server actions
 ├── packages/
 │   ├── core/           the kernel: content graph, ids, errors, events, paging
+│   ├── identity/       accounts, sessions, authorisation (server-side only)
 │   └── ui/             the design system: tokens and primitives
 ├── docs/               architecture, decisions, data model, API
 ├── ARCHITECTURE.md     how the pieces fit and why

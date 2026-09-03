@@ -26,13 +26,13 @@ export const PHASES: readonly Phase[] = [
     number: 1,
     title: 'Authentication and profiles',
     summary: 'Accounts, sessions, roles, permissions enforced on the server.',
-    status: 'active',
+    status: 'done',
   },
   {
     number: 2,
     title: 'Video and creators',
     summary: 'Videos, shorts, creator profiles, upload and playback contracts.',
-    status: 'planned',
+    status: 'active',
   },
   {
     number: 3,

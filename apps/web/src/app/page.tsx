@@ -3,7 +3,7 @@ import { Badge, Card, Section } from '@flux/ui';
 
 import { Icon } from '@/components/Icon';
 import { GraphExample } from '@/components/GraphExample';
-import { PHASES } from '@/lib/roadmap';
+import { PHASES, currentPhase } from '@/lib/roadmap';
 
 /**
  * Home, during phase 0.
@@ -19,7 +19,7 @@ export default function HomePage() {
     <div className="flex flex-col gap-12">
       <section className="flex flex-col gap-5 pt-2">
         <Badge tone="accent" className="self-start">
-          Phase 0 &middot; foundation
+          Phase {currentPhase.number} &middot; {currentPhase.title.toLowerCase()}
         </Badge>
         <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-4xl">
           Everything you watch is connected to somewhere you can go next.
