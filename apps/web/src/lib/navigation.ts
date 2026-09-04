@@ -42,11 +42,17 @@ export const PRIMARY_NAV: readonly NavGroup[] = [
     id: 'you',
     label: 'You',
     items: [
+      { href: '/profile', label: 'Profile', icon: 'user', ready: true, phase: 1 },
       { href: '/library', label: 'Library', icon: 'library', ready: false, phase: 3 },
       { href: '/history', label: 'History', icon: 'clock', ready: false, phase: 3 },
       { href: '/watch-later', label: 'Watch later', icon: 'bookmark', ready: false, phase: 3 },
       { href: '/liked', label: 'Liked', icon: 'heart', ready: false, phase: 3 },
     ],
+  },
+  {
+    id: 'account',
+    label: 'Account',
+    items: [{ href: '/login', label: 'Sign in', icon: 'login', ready: true, phase: 1 }],
   },
   {
     id: 'platform',
