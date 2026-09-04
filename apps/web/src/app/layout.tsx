@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         {/*
           Applies the stored theme before the first paint. suppressHydrationWarning
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-on-accent"
         >
-          Skip to content
+          Pular para o conteúdo
         </a>
 
         <Sidebar />
