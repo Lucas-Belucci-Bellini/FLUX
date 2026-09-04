@@ -32,6 +32,9 @@ A lower-level document must not silently override a higher-level architectural r
 - `docs/architecture/REALTIME AND EVENTING CONTRACT.md`
 - `docs/architecture/FLUX API AND APPLICATION CONTRACT.md`
 - `docs/architecture/FLUX WEB APPLICATION ARCHITECTURE.md`
+- `docs/architecture/FLUX DEPLOYMENT AND ENVIRONMENT ARCHITECTURE.md`
+- `docs/architecture/FLUX TESTING STRATEGY.md`
+- `docs/architecture/FLUX OBSERVABILITY AND INCIDENT MODEL.md`
 
 ## Media / discovery / experience
 
@@ -44,6 +47,8 @@ A lower-level document must not silently override a higher-level architectural r
 - `docs/product/FLUX WEBSITE MVP SCOPE.md`
 - `docs/product/FLUX INFORMATION ARCHITECTURE.md`
 - `docs/product/FLUX DESIGN SYSTEM.md`
+- `docs/product/FLUX ACCESSIBILITY AND RESPONSIVE CONTRACT.md`
+- `docs/product/FLUX WEBSITE ROUTE AND SCREEN CONTRACT.md`
 
 ## Domains
 
@@ -97,6 +102,18 @@ Authentication
 → Community
 → Post
 → Search
+```
+
+## Documentation added in the current foundation pass
+
+The operational and website contracts now explicitly cover:
+
+```text
+Deployment / environments
+Testing strategy
+Observability / incidents
+Accessibility / responsive behavior
+Routes / screens / shared website shell
 ```
 
 ## Status
