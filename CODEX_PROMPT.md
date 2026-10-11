@@ -1,0 +1,3 @@
+# FLUX — prompt de engenharia
+
+Leia README, CONTRIBUTING, ARCHITECTURE, grafo de conteúdo e contratos afetados. Respeite limites do monorepo TypeScript entre apps, packages, services e domínios. Antes de adicionar schemas/APIs/eventos, localize modelo e consumidores. Preserve ownership, integridade do grafo, autorização, ciclo de vida, remoção, moderação e consistência. Mudanças de schema/API exigem compatibilidade, migração e docs. Use Node/scripts declarados; comece pelo teste/typecheck do workspace e rode npm run verify quando adequado. Não trate demo como real. Preserve licença, segurança de URLs/uploads e diffs alheios; reporte comandos/resultados.
