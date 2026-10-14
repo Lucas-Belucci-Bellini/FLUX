@@ -74,7 +74,11 @@ const DEVELOPMENT_SESSION_SECRET = 'flux-development-only-session-secret-not-for
  */
 export function sessionSecret(): string {
   if (env.FLUX_SESSION_SECRET) return env.FLUX_SESSION_SECRET;
-  if (env.NODE_ENV === 'production') {
+
+  // The build renders pages to discover which are static; no session is issued
+  // or verified during it, so the placeholder is harmless there. A production
+  // *server* still refuses to start signing cookies without a real secret.
+  if (env.NODE_ENV === 'production' && !isBuildPhase) {
     throw new Error(
       'FLUX_SESSION_SECRET is required in production. See .env.example for how to generate one.',
     );

@@ -1,26 +1,37 @@
 # API
 
-Route handlers land in **phase 1**, with the first thing worth authorising.
-This document records the contract they will follow.
-
-## Shape
-
-Organised by domain, never as one endpoint that does everything:
+Organised by domain, never as one endpoint that does everything. The routes
+marked ✅ exist; the rest arrive with their phase.
 
 ```
-/api/auth          sessions
-/api/users         accounts and profiles
-/api/videos        video CRUD, visibility, playback
-/api/shorts
-/api/comments
-/api/posts
-/api/communities
-/api/music
-/api/live
-/api/shop
-/api/search
-/api/notifications
+/api/auth          ✅ registration and sessions
+/api/users         ✅ accounts and profiles
+/api/videos           video CRUD, visibility, playback     phase 2
+/api/shorts                                                phase 2
+/api/comments                                              phase 4
+/api/communities                                           phase 5
+/api/posts                                                 phase 6
+/api/music                                                 phase 8
+/api/live                                                  phase 9
+/api/shop                                                  phase 10
+/api/search                                                phase 3
+/api/notifications                                         phase 7
 ```
+
+## Implemented
+
+| Method | Path | Does |
+| ------ | ---- | ---- |
+| POST | `/api/auth/register` | Create an account, start a session. `201` with the account; `409` if the handle or email is taken; `422` with per-field messages. |
+| GET | `/api/auth/session` | Who am I? `{ user: … \| null }` - never a 401, because "signed out" is an answer. |
+| POST | `/api/auth/session` | Sign in with a handle **or** an email. `401` for both a wrong password and an unknown account, with the same message. |
+| DELETE | `/api/auth/session` | Sign out this session only. Other sessions survive. |
+| GET | `/api/users/me` | The signed-in account, including its private fields. `401` when signed out. |
+| PATCH | `/api/users/me` | Edit your own profile. The target is the session, never a field in the body. |
+| GET | `/api/users/:handle` | A public profile. `404` for a suspended account - whether one exists is not a stranger's business. |
+
+The session token never appears in a response body. It is set as an `HttpOnly`
+cookie, so page scripts cannot read it.
 
 ## Rules
 

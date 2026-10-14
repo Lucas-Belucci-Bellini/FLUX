@@ -36,3 +36,6 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Next generates this and rewrites it between dev and build runs.
+apps/web/next-env.d.ts

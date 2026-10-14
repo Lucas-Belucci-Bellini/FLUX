@@ -8,6 +8,7 @@ import { cn } from '@flux/ui';
 import { Icon } from '@/components/Icon';
 import { Wordmark } from '@/components/Wordmark';
 import { MOBILE_NAV, PRIMARY_NAV, type NavItem, isActive } from '@/lib/navigation';
+import { currentPhase } from '@/lib/roadmap';
 
 function itemClasses(active: boolean, ready: boolean): string {
   return cn(
@@ -81,7 +82,7 @@ export function Sidebar() {
       </div>
 
       <p className="mt-auto px-3 text-[11px] leading-relaxed text-ink-faint">
-        Phase 0 &middot; foundation.
+        Building phase {currentPhase.number} &middot; {currentPhase.title.toLowerCase()}.
         <br />
         Items marked P<em>n</em> arrive in that phase.
       </p>
